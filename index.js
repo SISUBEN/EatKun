@@ -181,17 +181,34 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
     let _gameStartTime, _gameStartDatetime;
 
     function gameInit() {
+        createjs.Sound.alternateExtensions = ["mp3"];
         createjs.Sound.registerSound({
-            src: "./music/err.mp3",
-            id: "err"
+            src: "./music/j.mp3",
+            id: "j"
         });
         createjs.Sound.registerSound({
-            src: "./music/end.mp3",
-            id: "end"
+            src: "./music/n.mp3",
+            id: "n"
         });
         createjs.Sound.registerSound({
-            src: "./music/tap.mp3",
-            id: "tap"
+            src: "./music/t.mp3",
+            id: "t"
+        });
+        createjs.Sound.registerSound({
+            src: "./music/m.mp3",
+            id: "m"
+        });
+        createjs.Sound.registerSound({
+            src: "./music/ngmhhy.mp3",
+            id: "r_end"
+        });
+        createjs.Sound.registerSound({
+            src: "./music/yhhmgn.mp3",
+            id: "r_end1"
+        });
+        createjs.Sound.registerSound({
+            src: "./music/nhf.mp3",
+            id: "nhf"
         });
         gameRestart();
     }
@@ -234,7 +251,9 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
             gameOver();
             GameLayerBG.className += ' flash';
             if (soundMode === 'on') {
-                createjs.Sound.play("end");
+                const end_sound = ["r_end1","r_end"];
+                let index = Math.floor((Math.random()*end_sound.length));
+                createjs.Sound.play(end_sound[index]);
             }
         }
         updatePanel();
@@ -363,7 +382,9 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
                 gameStart();
             }
             if (soundMode === 'on') {
-                createjs.Sound.play("tap");
+                const tap_sound = ["j","n","t","m"];
+                let index = Math.floor((Math.random()*tap_sound.length));
+                createjs.Sound.play(tap_sound[index]);
             }
             tar = document.getElementById(p.id);
             tar.className = tar.className.replace(_ttreg, ' tt$1');
@@ -375,7 +396,8 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
             gameLayerMoveNextRow();
         } else if (_gameStart && !tar.notEmpty) {
             if (soundMode === 'on') {
-                createjs.Sound.play("err");
+                createjs.Sound.play("nhf");
+                //game end
             }
             tar.classList.add('bad');
             if (mode === MODE_PRACTICE) {
