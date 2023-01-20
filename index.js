@@ -251,9 +251,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
             gameOver();
             GameLayerBG.className += ' flash';
             if (soundMode === 'on') {
-                const end_sound = ["r_end1","r_end"];
-                let index = Math.floor((Math.random()*end_sound.length));
-                createjs.Sound.play(end_sound[index]);
+                createjs.Sound.play(end_sound["nhf"]);
             }
         }
         updatePanel();
@@ -396,7 +394,9 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
             gameLayerMoveNextRow();
         } else if (_gameStart && !tar.notEmpty) {
             if (soundMode === 'on') {
-                createjs.Sound.play("nhf");
+                const end_sound = ["r_end1","r_end"];
+                let index = Math.floor((Math.random()*end_sound.length));
+                createjs.Sound.play(end_sound[index]);
                 //game end
             }
             tar.classList.add('bad');
